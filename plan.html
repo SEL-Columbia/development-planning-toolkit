@@ -12,12 +12,17 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
   integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r"
   crossorigin="anonymous">
+</head>
+<body>
   <style>
     .img-responsive{ margin:0 auto; }
     .bigspacer { height: 20px; }
+    ul.img-nav a {
+        padding: 6px;
+        cursor: pointer;
+        cursor: hand;
+    }
   </style>
-</head>
-<body>
   <!-- Static navbar -->
   <div class="container">
     <nav class="navbar navbar-default">
@@ -52,8 +57,8 @@
   </div>
   <div class="bigspacer"></div>
   <div class="container">
-    <div class="row col-md-1"></div>
-    <div class="row col-md-10">
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
       <h3>Step 5: Develop Energy Plan</h3>
       <div class="row">
       <div class="col-md-5">
@@ -72,27 +77,61 @@
             <li>Implement a grid extension algorithm to connect all locations for which grid power is economically viable in the most efficient manner. Afterwards, the remaining locations are optimized between mini-grid or off-grid technology solutions.</li>
             <li>Propose a cost framework on a settlement-by-settlement basis for which the target energy capacities are satisfied in a cost-effective manner.</li>
         </ol>
+        <p><a href="technology.html">&lt; Prev</a></p>
       </div>
-      <div class="col-md-5" style="padding-top:20px;">
-          <img src="images/Map_Satellite.jpg" />
-          <img src="images/Map_Rooftops.jpg" />
-          <img src="images/Map_Clusters.jpg" />
-          <img src="images/Map_FacilityLocations.jpg" />
-          <img src="images/Map_EnergyDemand.jpg" />
-          <img src="images/Map_ProposedGrid_EnergyDemand.jpg" />
-          <img class='opaque' src="images/Map_ProposedGrid.jpg" />
-          <span>Satellite</span><span>Rooftops</span><span>Clusters</span><span>Facilities</span><span>Demand</span><span>Grid w/Demand</span><span class="selected">Proposed Grid</span>
-          <p style="color:#589917; font-size:13px;">Step-by-step maps of the energy planning process in Ruhiira</p>
+      <div class="col-md-5 col-figure" style="padding-top:20px;font-size:x-small;">
+          <img id="satellite" src="images/Map_Satellite.jpg" />
+          <img id="rooftops" src="images/Map_Rooftops.jpg" style="display:none;"/>
+          <img id="clusters" src="images/Map_Clusters.jpg" style="display:none;"/>
+          <img id="facilities" src="images/Map_FacilityLocations.jpg" style="display:none;"/>
+          <img id="demand" src="images/Map_EnergyDemand.jpg" style="display:none;"/>
+          <img id="grid_demand" src="images/Map_ProposedGrid_EnergyDemand.jpg" style="display:none;"/>
+          <img id="grid" src="images/Map_ProposedGrid.jpg" style="display:none;"/>
+          <nav class="navbar navbar-default">
+            <ul class="nav navbar-nav img-nav">
+              <li class="active">
+                <a id="satellite">Sat</a>
+              </li>
+              <li>
+                <a id="rooftops">Roofs</a>
+              </li>
+              <li>
+                <a id="clusters">Clusters</a>
+              </li>
+              <li>
+                <a id="facilities">Facilities</a>
+              </li>
+              <li>
+                <a id="demand">Demand</a>
+              </li>
+              <li>
+                <a id="grid_demand">Grid/Demand</a>
+              </li>
+              <li>
+                <a id="grid">Grid</a>
+              </li>
+            </ul>
+          </nav>
+          <p style="color:#589917;">Step-by-step maps of the energy planning process in Ruhiira</p>
       </div>
-      </div>
-      <p><a href="technology.html">Prev</a></p>
+      </div><!-- end row -->
     </div>
-    <div class="row col-md-1"></div>
+    <div class="col-md-1"></div>
   </div><!-- Latest compiled and minified JavaScript -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
   integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
   crossorigin="anonymous">
+  </script>
+  <script>
+  // image navigation
+  $(".img-nav a").on("click", function(e){
+     $(".img-nav").find(".active").removeClass("active");
+     $(this).parent().addClass("active");
+     $(".col-figure img:visible").hide();
+     var selected_id = e.target.id;
+     $(".col-figure img#" + selected_id).show();
+  });
   </script>
 </body>
 </html>
